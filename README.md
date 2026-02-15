@@ -14,5 +14,5 @@ A basic intrusion detection system that logs alerts on Ethereum blockchain using
 - Immutable blockchain alerts
 
 ## Author
-Jayant Sharda
+Jayant Sharda,
 Vishesh Jaiswal
