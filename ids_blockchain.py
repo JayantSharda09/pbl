@@ -8,7 +8,7 @@ assert w3.is_connected(), "Ganache not connected"
 account = w3.eth.accounts[0]
 
 # Contract details
-contract_address = "0xd8E4A68c949dc70cA4a8d7b0E12A9413F03E935e"
+contract_address = "0x614B69618b3650812f4B520346D755b7A9C341a2"
 abi = [
 	{
 		"inputs": [
@@ -76,3 +76,11 @@ tx = contract.functions.logAttack(
 
 w3.eth.wait_for_transaction_receipt(tx)
 print("Attack logged on blockchain!")
+
+# Intrusion detection: more than 5 logs = intrusion
+try:
+    count = contract.functions.getAlertsCount().call()
+    if count > 5:
+        print("⚠ INTRUSION DETECTED - More than 5 attacks logged! (Total: {})".format(count))
+except Exception as e:
+    print("(Could not check alert count - ensure contract is deployed at {}: {})".format(contract_address, e))
